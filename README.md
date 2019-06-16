@@ -38,3 +38,5 @@ ping = network_scan("172.217.7.0","24") # must be in CIDR notation
 ping_name = network_scan('google.com',hostname=True) # hostname is set to true for pinging one address or a hostname
 ping_name1 = network_scan('Idontexist.com',hostname=True) 
 ```
+
+Will return a dictionary for singular or range
