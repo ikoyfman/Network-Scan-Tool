@@ -9,7 +9,7 @@ def tcp_connect(ip, port_number):
     try:
         scanner = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         scanner.settimeout(0.1)
-        scanner.connect((str("google.com"), port_number))
+        scanner.connect((str(ip), port_number))
         scanner.close()
         return True
     except:
