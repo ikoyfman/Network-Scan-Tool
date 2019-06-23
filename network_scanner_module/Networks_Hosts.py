@@ -1,4 +1,4 @@
-from network_scan import network_scan
+from network_scan import network_scan, get_hostname
 from port_scanner_threading import tcp_connect, scan_ports
 
 
@@ -18,6 +18,10 @@ class Network(object):
         for ip_host in self.hosts:
             ip_host.scan_host_ports()
 
+    def discover_hostnames(self):
+        for ip_host in self.hosts:
+            ip_host.get_hostname()
+
 
 class Host(object):
 
@@ -31,8 +35,14 @@ class Host(object):
         results = scan_ports(self.ipaddress, port_start, port_end)
         self.open_ports = results
 
+    def get_hostname(self):
+        result = get_hostname(self.ipaddress)
+        self.hostname = result
+
 if __name__ == "__main__":
     current_network = Network('192.168.10.0', 24)
     current_network.discover_hosts()
-    current_network.discover_ports_hosts()
-    print(current_network.hosts[0].open_ports)
+    #current_network.discover_ports_hosts()
+    current_network.discover_hostnames()
+    for ip_host in current_network.hosts:
+        print(ip_host.hostname)
