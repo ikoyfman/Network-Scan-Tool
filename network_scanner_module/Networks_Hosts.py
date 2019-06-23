@@ -14,20 +14,25 @@ class Network(object):
             if value:
                 self.hosts.append(Host(ipaddr))
 
+    def discover_ports_hosts(self):
+        for ip_host in self.hosts:
+            ip_host.scan_host_ports()
+
 
 class Host(object):
 
     def __init__(self, ipaddress):
         self.ipaddress = ipaddress
-        self.open_ports = []
 
     def __repr__(self):
         return self.ipaddress
 
-    def open_ports(self, port_start=1, port_end=1024):
+    def scan_host_ports(self, port_start=1, port_end=1024):
         results = scan_ports(self.ipaddress, port_start, port_end)
+        self.open_ports = results
 
 if __name__ == "__main__":
     current_network = Network('192.168.10.0', 24)
     current_network.discover_hosts()
-    print(current_network.hosts)
+    current_network.discover_ports_hosts()
+    print(current_network.hosts[0].open_ports)
