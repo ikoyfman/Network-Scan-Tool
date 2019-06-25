@@ -1,5 +1,6 @@
 from network_scanner_module.port_scanner_threading import scan_ports,tcp_connect
 from network_scanner_module.network_scan import network_scan
+from Networks_Hosts import Network
 
 def test_google_open():
     test_ip1 = tcp_connect('google.com',80)
@@ -24,3 +25,8 @@ def test_ping_scan_google_net():
     ping_name1 = network_scan('IKhammer.com',hostname=True)
     assert ping_name['google.com'] == True
     assert ping_name1['IKhammer.com'] == False
+
+def test_hosts():
+    cloud_flare = Network('173.245.48.0',20)
+    cloud_flare.discover_hosts()
+    cloud_flare.discover_hostnames()

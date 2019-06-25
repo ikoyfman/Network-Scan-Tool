@@ -64,3 +64,6 @@ target/
 #venv
 venv
 testing.py
+
+#pytest cahce
+.pytest_cache
