@@ -38,6 +38,9 @@ def network_scan(address="192.168.1.0", subnet=str(24), hostname=False):
     cmd_list = [['ping', ping_arg, '1', hosts[host].compressed]
                 for host in range(0, len(hosts))]
 
+    #TODO need to figure out how to break cmd_list into chunks for processing
+    
+
     # Ping all hosts capture response
     results = {}
     procs_list = [Popen(cmd, stdout=PIPE) for cmd in cmd_list]
