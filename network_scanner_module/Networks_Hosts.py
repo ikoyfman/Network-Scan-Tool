@@ -42,7 +42,7 @@ class Host(object):
 if __name__ == "__main__":
     current_network = Network('192.168.10.0', 24)
     current_network.discover_hosts()
-    #current_network.discover_ports_hosts()
+    current_network.discover_ports_hosts()
     current_network.discover_hostnames()
     for ip_host in current_network.hosts:
         print(ip_host.hostname)
