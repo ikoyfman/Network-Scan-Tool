@@ -39,11 +39,25 @@ def network_scan(address="192.168.1.0", subnet=str(24), hostname=False):
                 for host in range(0, len(hosts))]
 
     subnet_chunk_dict = {
-        
+        "32": 1,
+        "31": 1,
+        "30": 1,
+        "29": 2,
+        "28": 8,
+        "27": 16,
+        "26": 32,
+        "25": 64,
+        "24": 128,
     }
 
+    if int(subnet) < 24:
+        chunk_numb = 256
+    else:
+        chunk_numb = subnet_chunk_dict[subnet]
+
     chunks = [
-        cmd_list[chunk:chunk+200] for chunk in range(0, len(cmd_list), 200)
+        cmd_list[chunk:chunk+chunk_numb]
+        for chunk in range(0, len(cmd_list), chunk_numb)
         ]
 
     # Ping all hosts capture response
