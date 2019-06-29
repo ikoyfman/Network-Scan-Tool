@@ -1,5 +1,5 @@
-from network_scan import network_scan, get_hostname
-from port_scanner_threading import tcp_connect, scan_ports
+from .network_scanning import network_scan, get_hostname
+from .port_scanner_threading import tcp_connect, scan_ports
 
 
 class Network(object):
