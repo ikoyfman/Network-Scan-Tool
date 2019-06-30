@@ -29,12 +29,8 @@ def test_ping_scan_google_net():
 
 
 def test_hosts():
-    cloud_flare = Networks_Hosts.Network("173.245.48.0", 20)
-    cloud_flare.discover_hosts()
-    cloud_flare.discover_hostnames()
-
-
-if __name__ == "__main__":
-    results = network_scanning.network_scan("google.com", 1, 500)
-    print(results)
-
+    google = Networks_Hosts.Network("172.217.7.0", 24)
+    google.discover_hosts()
+    assert google.hosts[13].ipaddress == '172.217.7.14'
+    google.discover_hostnames()
+    assert google.hosts[13].hostname[0] == 'lga25s56-in-f14.1e100.net'
