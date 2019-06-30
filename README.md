@@ -24,6 +24,8 @@ These will all return true except for test_tcp_port3 since port 500 is closed on
 
 
 scan ports is designed for multiple ports
+
+scan port uses the multiprocessing library to perform multiple scans as once. It will use all avaliable cores on the cpu for scan
 ```
 test_scan_port_range = scan_ports('google.com',1,1024) # Must state start and finish port
 ```
@@ -32,6 +34,7 @@ This will scan ports 1 through 1024 and then return a dictionary of all the port
 
 ### network_scan
 This function is designed to ping a range of address or a particular hostname.
+network scan uses subprocess Popen. Depending on the size of the subnet it will break it into chunks. Maximum chunk size will be 256 due to subprocess spawning processes. After 256 you would need to change maximum allowed files opened
 
 ```
 ping = network_scan("172.217.7.0","24") # must be in CIDR notation
